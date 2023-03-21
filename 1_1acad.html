@@ -13,7 +13,7 @@
 
 <title>Questões acadêmicas</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
@@ -131,11 +131,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -164,8 +168,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -173,16 +177,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -394,28 +391,28 @@ escolaridade?</h3>
 <tbody>
 <tr class="odd">
 <td align="center">ensino medio</td>
-<td align="center">10</td>
-<td align="center">0.1695</td>
+<td align="center">24</td>
+<td align="center">0.6154</td>
 </tr>
 <tr class="even">
 <td align="center">ensino superior</td>
-<td align="center">10</td>
-<td align="center">0.1695</td>
+<td align="center">13</td>
+<td align="center">0.3333</td>
 </tr>
 <tr class="odd">
 <td align="center">mestrado</td>
-<td align="center">20</td>
-<td align="center">0.339</td>
+<td align="center">1</td>
+<td align="center">0.02564</td>
 </tr>
 <tr class="even">
 <td align="center">doutorado</td>
-<td align="center">10</td>
-<td align="center">0.1695</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
 <tr class="odd">
 <td align="center">outro</td>
-<td align="center">9</td>
-<td align="center">0.1525</td>
+<td align="center">1</td>
+<td align="center">0.02564</td>
 </tr>
 </tbody>
 </table>
@@ -441,29 +438,29 @@ escolaridade?</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">mestrado</td>
-<td align="center">20</td>
-<td align="center">0.339</td>
-</tr>
-<tr class="even">
 <td align="center">ensino medio</td>
-<td align="center">10</td>
-<td align="center">0.1695</td>
-</tr>
-<tr class="odd">
-<td align="center">ensino superior</td>
-<td align="center">10</td>
-<td align="center">0.1695</td>
+<td align="center">24</td>
+<td align="center">0.6154</td>
 </tr>
 <tr class="even">
-<td align="center">doutorado</td>
-<td align="center">10</td>
-<td align="center">0.1695</td>
+<td align="center">ensino superior</td>
+<td align="center">13</td>
+<td align="center">0.3333</td>
 </tr>
 <tr class="odd">
+<td align="center">mestrado</td>
+<td align="center">1</td>
+<td align="center">0.02564</td>
+</tr>
+<tr class="even">
 <td align="center">outro</td>
-<td align="center">9</td>
-<td align="center">0.1525</td>
+<td align="center">1</td>
+<td align="center">0.02564</td>
+</tr>
+<tr class="odd">
+<td align="center">doutorado</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
 </tbody>
 </table>
@@ -512,54 +509,74 @@ ensino médio?</h3>
 </thead>
 <tbody>
 <tr class="odd">
+<td align="center">2000</td>
+<td align="center">1</td>
+<td align="center">0.02564</td>
+</tr>
+<tr class="even">
+<td align="center">2002</td>
+<td align="center">1</td>
+<td align="center">0.02564</td>
+</tr>
+<tr class="odd">
+<td align="center">2007</td>
+<td align="center">3</td>
+<td align="center">0.07692</td>
+</tr>
+<tr class="even">
+<td align="center">2008</td>
+<td align="center">1</td>
+<td align="center">0.02564</td>
+</tr>
+<tr class="odd">
+<td align="center">2010</td>
+<td align="center">3</td>
+<td align="center">0.07692</td>
+</tr>
+<tr class="even">
+<td align="center">2011</td>
+<td align="center">1</td>
+<td align="center">0.02564</td>
+</tr>
+<tr class="odd">
 <td align="center">2013</td>
 <td align="center">1</td>
-<td align="center">0.03448</td>
+<td align="center">0.02564</td>
 </tr>
 <tr class="even">
 <td align="center">2014</td>
-<td align="center">1</td>
-<td align="center">0.03448</td>
+<td align="center">4</td>
+<td align="center">0.1026</td>
 </tr>
 <tr class="odd">
 <td align="center">2015</td>
-<td align="center">1</td>
-<td align="center">0.03448</td>
+<td align="center">2</td>
+<td align="center">0.05128</td>
 </tr>
 <tr class="even">
 <td align="center">2016</td>
-<td align="center">1</td>
-<td align="center">0.03448</td>
+<td align="center">3</td>
+<td align="center">0.07692</td>
 </tr>
 <tr class="odd">
-<td align="center">2017</td>
-<td align="center">2</td>
-<td align="center">0.06897</td>
-</tr>
-<tr class="even">
 <td align="center">2018</td>
 <td align="center">3</td>
-<td align="center">0.1034</td>
-</tr>
-<tr class="odd">
-<td align="center">2019</td>
-<td align="center">4</td>
-<td align="center">0.1379</td>
+<td align="center">0.07692</td>
 </tr>
 <tr class="even">
-<td align="center">2020</td>
-<td align="center">5</td>
-<td align="center">0.1724</td>
+<td align="center">2019</td>
+<td align="center">2</td>
+<td align="center">0.05128</td>
 </tr>
 <tr class="odd">
-<td align="center">2021</td>
-<td align="center">5</td>
-<td align="center">0.1724</td>
+<td align="center">2020</td>
+<td align="center">1</td>
+<td align="center">0.02564</td>
 </tr>
 <tr class="even">
 <td align="center">2022</td>
-<td align="center">6</td>
-<td align="center">0.2069</td>
+<td align="center">13</td>
+<td align="center">0.3333</td>
 </tr>
 </tbody>
 </table>
@@ -584,29 +601,29 @@ ensino médio?</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">[2012,2014]</td>
+<td align="center">[2000,2005]</td>
 <td align="center">2</td>
-<td align="center">0.06897</td>
+<td align="center">0.05128</td>
 </tr>
 <tr class="even">
-<td align="center">(2014,2016]</td>
-<td align="center">2</td>
-<td align="center">0.06897</td>
+<td align="center">(2005,2010]</td>
+<td align="center">7</td>
+<td align="center">0.1795</td>
 </tr>
 <tr class="odd">
-<td align="center">(2016,2018]</td>
-<td align="center">5</td>
-<td align="center">0.1724</td>
+<td align="center">(2010,2015]</td>
+<td align="center">8</td>
+<td align="center">0.2051</td>
 </tr>
 <tr class="even">
-<td align="center">(2018,2020]</td>
+<td align="center">(2015,2020]</td>
 <td align="center">9</td>
-<td align="center">0.3103</td>
+<td align="center">0.2308</td>
 </tr>
 <tr class="odd">
-<td align="center">(2020,2022]</td>
-<td align="center">11</td>
-<td align="center">0.3793</td>
+<td align="center">(2020,2025]</td>
+<td align="center">13</td>
+<td align="center">0.3333</td>
 </tr>
 </tbody>
 </table>
@@ -637,11 +654,11 @@ ensino médio?</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">2013</td>
-<td align="center">2018</td>
-<td align="center">2019</td>
-<td align="center">2020</td>
-<td align="center">2021</td>
+<td align="center">2000</td>
+<td align="center">2012</td>
+<td align="center">2016</td>
+<td align="center">2016</td>
+<td align="center">2022</td>
 <td align="center">2022</td>
 </tr>
 </tbody>
@@ -661,9 +678,9 @@ ensino médio?</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">9</td>
-<td align="center">6.207</td>
-<td align="center">2.491</td>
+<td align="center">22</td>
+<td align="center">37.68</td>
+<td align="center">6.138</td>
 </tr>
 </tbody>
 </table>
@@ -735,18 +752,18 @@ em escola pública ou particular?</h3>
 <tbody>
 <tr class="odd">
 <td align="center">totalmente em escola publica</td>
-<td align="center">31</td>
-<td align="center">0.5254</td>
+<td align="center">23</td>
+<td align="center">0.5897</td>
 </tr>
 <tr class="even">
 <td align="center">totalmente em escola particular</td>
-<td align="center">20</td>
-<td align="center">0.339</td>
+<td align="center">12</td>
+<td align="center">0.3077</td>
 </tr>
 <tr class="odd">
 <td align="center">parte em escola publica, parte em particular</td>
-<td align="center">8</td>
-<td align="center">0.1356</td>
+<td align="center">4</td>
+<td align="center">0.1026</td>
 </tr>
 </tbody>
 </table>
@@ -783,18 +800,18 @@ tradicional ou profissionalizante?</h3>
 <tbody>
 <tr class="odd">
 <td align="center">ensino medio tradicional</td>
-<td align="center">42</td>
-<td align="center">0.7119</td>
+<td align="center">31</td>
+<td align="center">0.7949</td>
 </tr>
 <tr class="even">
 <td align="center">ensino medio profissionalizante (tecnico)</td>
-<td align="center">15</td>
-<td align="center">0.2542</td>
+<td align="center">8</td>
+<td align="center">0.2051</td>
 </tr>
 <tr class="odd">
 <td align="center">outro</td>
-<td align="center">2</td>
-<td align="center">0.0339</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
 </tbody>
 </table>
@@ -831,14 +848,14 @@ alguma linguagem de programação?</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">nao</td>
-<td align="center">29</td>
-<td align="center">0.6591</td>
+<td align="center">sim</td>
+<td align="center">23</td>
+<td align="center">0.5897</td>
 </tr>
 <tr class="even">
-<td align="center">sim</td>
-<td align="center">15</td>
-<td align="center">0.3409</td>
+<td align="center">nao</td>
+<td align="center">16</td>
+<td align="center">0.4103</td>
 </tr>
 </tbody>
 </table>
@@ -874,59 +891,59 @@ programação você já usou?</h3>
 </thead>
 <tbody>
 <tr class="odd">
+<td align="center">python</td>
+<td align="center">17</td>
+<td align="center">0.2024</td>
+</tr>
+<tr class="even">
 <td align="center">nunca usei</td>
-<td align="center">30</td>
-<td align="center">0.1775</td>
+<td align="center">16</td>
+<td align="center">0.1905</td>
+</tr>
+<tr class="odd">
+<td align="center">r</td>
+<td align="center">11</td>
+<td align="center">0.131</td>
 </tr>
 <tr class="even">
 <td align="center">c</td>
-<td align="center">24</td>
-<td align="center">0.142</td>
+<td align="center">10</td>
+<td align="center">0.119</td>
 </tr>
 <tr class="odd">
-<td align="center">python</td>
-<td align="center">24</td>
-<td align="center">0.142</td>
-</tr>
-<tr class="even">
-<td align="center">r</td>
-<td align="center">23</td>
-<td align="center">0.1361</td>
-</tr>
-<tr class="odd">
-<td align="center">php</td>
-<td align="center">12</td>
-<td align="center">0.07101</td>
-</tr>
-<tr class="even">
 <td align="center">sql</td>
-<td align="center">12</td>
-<td align="center">0.07101</td>
-</tr>
-<tr class="odd">
-<td align="center">c++</td>
-<td align="center">11</td>
-<td align="center">0.06509</td>
+<td align="center">10</td>
+<td align="center">0.119</td>
 </tr>
 <tr class="even">
-<td align="center">c#</td>
-<td align="center">11</td>
-<td align="center">0.06509</td>
+<td align="center">c++</td>
+<td align="center">9</td>
+<td align="center">0.1071</td>
 </tr>
 <tr class="odd">
 <td align="center">java</td>
-<td align="center">11</td>
-<td align="center">0.06509</td>
+<td align="center">4</td>
+<td align="center">0.04762</td>
 </tr>
 <tr class="even">
 <td align="center">javascript</td>
-<td align="center">11</td>
-<td align="center">0.06509</td>
+<td align="center">3</td>
+<td align="center">0.03571</td>
+</tr>
+<tr class="odd">
+<td align="center">php</td>
+<td align="center">2</td>
+<td align="center">0.02381</td>
+</tr>
+<tr class="even">
+<td align="center">c#</td>
+<td align="center">1</td>
+<td align="center">0.0119</td>
 </tr>
 <tr class="odd">
 <td align="center">outro</td>
-<td align="center">0</td>
-<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0.0119</td>
 </tr>
 </tbody>
 </table>
@@ -963,14 +980,14 @@ com funcionalidades estatísticas?</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">nao</td>
-<td align="center">44</td>
-<td align="center">0.7458</td>
+<td align="center">sim</td>
+<td align="center">21</td>
+<td align="center">0.5385</td>
 </tr>
 <tr class="even">
-<td align="center">sim</td>
-<td align="center">15</td>
-<td align="center">0.2542</td>
+<td align="center">nao</td>
+<td align="center">18</td>
+<td align="center">0.4615</td>
 </tr>
 </tbody>
 </table>
@@ -1008,48 +1025,48 @@ funcionalidades estatísticas você usa ou já usou?</h3>
 <tbody>
 <tr class="odd">
 <td align="center">excel ou similares</td>
-<td align="center">33</td>
-<td align="center">0.3402</td>
+<td align="center">20</td>
+<td align="center">0.3279</td>
 </tr>
 <tr class="even">
 <td align="center">nunca usei</td>
-<td align="center">15</td>
-<td align="center">0.1546</td>
+<td align="center">16</td>
+<td align="center">0.2623</td>
 </tr>
 <tr class="odd">
 <td align="center">r</td>
 <td align="center">13</td>
-<td align="center">0.134</td>
-</tr>
-<tr class="even">
-<td align="center">spss</td>
-<td align="center">9</td>
-<td align="center">0.09278</td>
-</tr>
-<tr class="odd">
-<td align="center">outro</td>
-<td align="center">7</td>
-<td align="center">0.07216</td>
+<td align="center">0.2131</td>
 </tr>
 <tr class="even">
 <td align="center">matlab</td>
 <td align="center">6</td>
-<td align="center">0.06186</td>
+<td align="center">0.09836</td>
 </tr>
 <tr class="odd">
-<td align="center">minitab</td>
-<td align="center">5</td>
-<td align="center">0.05155</td>
+<td align="center">outro</td>
+<td align="center">3</td>
+<td align="center">0.04918</td>
 </tr>
 <tr class="even">
-<td align="center">statistica</td>
-<td align="center">5</td>
-<td align="center">0.05155</td>
+<td align="center">spss</td>
+<td align="center">2</td>
+<td align="center">0.03279</td>
 </tr>
 <tr class="odd">
 <td align="center">sas</td>
-<td align="center">4</td>
-<td align="center">0.04124</td>
+<td align="center">1</td>
+<td align="center">0.01639</td>
+</tr>
+<tr class="even">
+<td align="center">minitab</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">statistica</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
 </tbody>
 </table>
@@ -1096,8 +1113,8 @@ atribui à Estatística?</h3>
 </tr>
 <tr class="odd">
 <td align="center">2</td>
-<td align="center">2</td>
-<td align="center">0.0339</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
 <tr class="even">
 <td align="center">3</td>
@@ -1111,33 +1128,33 @@ atribui à Estatística?</h3>
 </tr>
 <tr class="even">
 <td align="center">5</td>
-<td align="center">4</td>
-<td align="center">0.0678</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
 <tr class="odd">
 <td align="center">6</td>
-<td align="center">1</td>
-<td align="center">0.01695</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
 <tr class="even">
 <td align="center">7</td>
-<td align="center">1</td>
-<td align="center">0.01695</td>
+<td align="center">2</td>
+<td align="center">0.05128</td>
 </tr>
 <tr class="odd">
 <td align="center">8</td>
-<td align="center">16</td>
-<td align="center">0.2712</td>
+<td align="center">9</td>
+<td align="center">0.2308</td>
 </tr>
 <tr class="even">
 <td align="center">9</td>
-<td align="center">3</td>
-<td align="center">0.05085</td>
+<td align="center">5</td>
+<td align="center">0.1282</td>
 </tr>
 <tr class="odd">
 <td align="center">10</td>
-<td align="center">32</td>
-<td align="center">0.5424</td>
+<td align="center">23</td>
+<td align="center">0.5897</td>
 </tr>
 </tbody>
 </table>
@@ -1168,9 +1185,9 @@ atribui à Estatística?</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">2</td>
+<td align="center">7</td>
 <td align="center">8</td>
-<td align="center">8.678</td>
+<td align="center">9.256</td>
 <td align="center">10</td>
 <td align="center">10</td>
 <td align="center">10</td>
@@ -1192,9 +1209,9 @@ atribui à Estatística?</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">8</td>
-<td align="center">3.739</td>
-<td align="center">1.934</td>
+<td align="center">3</td>
+<td align="center">0.9852</td>
+<td align="center">0.9925</td>
 </tr>
 </tbody>
 </table>
@@ -1255,25 +1272,25 @@ expectativa após a conclusão da graduação?</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">seguir os estudos</td>
-<td align="center">29</td>
-<td align="center">0.4915</td>
+<td align="center">aumento salarial e oportunidades mais
+promissoras</td>
+<td align="center">18</td>
+<td align="center">0.4615</td>
 </tr>
 <tr class="even">
 <td align="center">conseguir um emprego</td>
-<td align="center">15</td>
-<td align="center">0.2542</td>
+<td align="center">8</td>
+<td align="center">0.2051</td>
 </tr>
 <tr class="odd">
-<td align="center">aumento salarial e oportunidades mais
-promissoras</td>
-<td align="center">15</td>
-<td align="center">0.2542</td>
+<td align="center">seguir os estudos</td>
+<td align="center">8</td>
+<td align="center">0.2051</td>
 </tr>
 <tr class="even">
 <td align="center">outro</td>
-<td align="center">0</td>
-<td align="center">0</td>
+<td align="center">5</td>
+<td align="center">0.1282</td>
 </tr>
 </tbody>
 </table>

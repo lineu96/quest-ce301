@@ -91,7 +91,7 @@ ggplot(table,
   )+
   xlab("Emprego") +
   ylab("Frequência") +
-  ggtitle("Situação de emprego x Expectativa após PG")+
+  ggtitle("Situação de emprego x Expectativa após graduação")+
   theme_classic() + theme(legend.position = 'top',
                           plot.title = element_text(family = "Helvetica", 
                                                     face = "bold", 
@@ -122,7 +122,7 @@ ggplot(table,
   #            vjust=1)+
   xlab("Emprego") +
   ylab("Proporção") +
-  ggtitle("Situação de emprego x Expectativa após PG")+
+  ggtitle("Situação de emprego x Expectativa após graduação")+
   theme_classic() + theme(legend.position = 'top',
                           plot.title = element_text(family = "Helvetica", 
                                                     face = "bold", 
@@ -176,7 +176,7 @@ ggplot(table2,
   #            vjust=1)+
   xlab("Emprego") +
   ylab("Proporção") +
-  ggtitle("Situação de emprego x Expectativa após PG")+
+  ggtitle("Situação de emprego x Expectativa após graduação")+
   theme_classic() + theme(legend.position = 'top',
                           plot.title = element_text(family = "Helvetica", 
                                                     face = "bold", 
@@ -213,6 +213,37 @@ ggplot(data = quest_23,
   xlab("Sexo") +
   ylab("Quadrados") +
   ggtitle("Sexo x Número de quadrados na figura")+
+  theme_classic() + theme(legend.position = 'none',
+                          plot.title = element_text(family = "Helvetica", 
+                                                    face = "bold", 
+                                                    size = (20),
+                                                    hjust = 0.5),
+                          axis.title = element_text(face = "bold",
+                                                    size = 15),
+                          text = element_text(size=15)) 
+
+```
+
+---
+
+#### Sexo x Altura
+
+```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE, fig.width=10}
+ggplot(data = quest_23, 
+       mapping = aes(x = sexo,
+                     y=altura)) +
+  stat_boxplot(geom ='errorbar')+
+  geom_boxplot(alpha = 1,
+               fill = '#E0F8F7')+
+  stat_summary(fun.y=mean, 
+               geom="point", 
+               shape=20, 
+               size=3, 
+               color="red", 
+               fill="red")+ 
+  xlab("Sexo") +
+  ylab("Altura") +
+  ggtitle("Sexo x Atura")+
   theme_classic() + theme(legend.position = 'none',
                           plot.title = element_text(family = "Helvetica", 
                                                     face = "bold", 
