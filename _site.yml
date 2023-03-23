@@ -52,19 +52,19 @@ navbar:
 
         - text: "---------" 
       
-    - text: "Material extra"
-      icon: fa-plus
-      menu:
-        
-        - text: "Dados"
-          icon: fa-arrow-right
-          href: https://github.com/lineu96/mepc23/blob/master/respostas/mepc23%20(respostas)%20-%20Respostas%20ao%20formul%C3%A1rio%201.csv
-
-        - text: "Como gerar um relatório html"
-          icon: fa-arrow-right
-          href: exemplo.html
-
-        - text: "---------" 
+    # - text: "Material extra"
+    #   icon: fa-plus
+    #   menu:
+    #     
+    #     - text: "Dados"
+    #       icon: fa-arrow-right
+    #       href: https://github.com/lineu96/quest-ce301/tree/main/respostas
+    # 
+    #     - text: "Como gerar um relatório html"
+    #       icon: fa-arrow-right
+    #       href: exemplo.html
+    # 
+    #     - text: "---------" 
         
   right:
     - text: "Lineu A.C.F"

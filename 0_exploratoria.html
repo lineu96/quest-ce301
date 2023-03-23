@@ -13,7 +13,7 @@
 
 <title>Um pouco sobre análise exploratória</title>
 
-<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
@@ -131,15 +131,11 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark the anchor link active (and if it's in a dropdown, also mark that active)
-  var dropdown = menuAnchor.closest('li.dropdown');
-  if (window.bootstrap) { // Bootstrap 4+
-    menuAnchor.addClass('active');
-    dropdown.find('> .dropdown-toggle').addClass('active');
-  } else { // Bootstrap 3
-    menuAnchor.parent().addClass('active');
-    dropdown.addClass('active');
-  }
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -168,8 +164,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "\e259";
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -177,9 +173,16 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "\e258";
-  font-family: 'Glyphicons Halflings';
+  content: "&#xe258;";
   border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -302,32 +305,6 @@ $(document).ready(function () {
         <span class="fa fa-arrow-right"></span>
          
         Análises bivariadas
-      </a>
-    </li>
-    <li class="divider"></li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <span class="fa fa-plus"></span>
-     
-    Material extra
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="https://github.com/lineu96/mepc23/blob/master/respostas/mepc23%20(respostas)%20-%20Respostas%20ao%20formul%C3%A1rio%201.csv">
-        <span class="fa fa-arrow-right"></span>
-         
-        Dados
-      </a>
-    </li>
-    <li>
-      <a href="exemplo.html">
-        <span class="fa fa-arrow-right"></span>
-         
-        Como gerar um relatório html
       </a>
     </li>
     <li class="divider"></li>
@@ -458,18 +435,18 @@ class="section level4">
 <tbody>
 <tr class="odd">
 <td align="center">a</td>
-<td align="center">36</td>
-<td align="center">0.36</td>
+<td align="center">32</td>
+<td align="center">0.32</td>
 </tr>
 <tr class="even">
 <td align="center">b</td>
-<td align="center">39</td>
-<td align="center">0.39</td>
+<td align="center">33</td>
+<td align="center">0.33</td>
 </tr>
 <tr class="odd">
 <td align="center">c</td>
-<td align="center">25</td>
-<td align="center">0.25</td>
+<td align="center">35</td>
+<td align="center">0.35</td>
 </tr>
 </tbody>
 </table>
@@ -496,18 +473,18 @@ class="section level4">
 <tbody>
 <tr class="odd">
 <td align="center">1</td>
-<td align="center">1</td>
-<td align="center">0.01</td>
+<td align="center">2</td>
+<td align="center">0.02</td>
 </tr>
 <tr class="even">
 <td align="center">2</td>
-<td align="center">12</td>
-<td align="center">0.12</td>
+<td align="center">2</td>
+<td align="center">0.02</td>
 </tr>
 <tr class="odd">
 <td align="center">3</td>
-<td align="center">15</td>
-<td align="center">0.15</td>
+<td align="center">11</td>
+<td align="center">0.11</td>
 </tr>
 <tr class="even">
 <td align="center">4</td>
@@ -516,28 +493,38 @@ class="section level4">
 </tr>
 <tr class="odd">
 <td align="center">5</td>
-<td align="center">18</td>
-<td align="center">0.18</td>
+<td align="center">19</td>
+<td align="center">0.19</td>
 </tr>
 <tr class="even">
 <td align="center">6</td>
-<td align="center">13</td>
-<td align="center">0.13</td>
+<td align="center">16</td>
+<td align="center">0.16</td>
 </tr>
 <tr class="odd">
 <td align="center">7</td>
-<td align="center">9</td>
-<td align="center">0.09</td>
+<td align="center">14</td>
+<td align="center">0.14</td>
 </tr>
 <tr class="even">
 <td align="center">8</td>
-<td align="center">6</td>
-<td align="center">0.06</td>
+<td align="center">7</td>
+<td align="center">0.07</td>
 </tr>
 <tr class="odd">
 <td align="center">9</td>
 <td align="center">5</td>
 <td align="center">0.05</td>
+</tr>
+<tr class="even">
+<td align="center">10</td>
+<td align="center">2</td>
+<td align="center">0.02</td>
+</tr>
+<tr class="odd">
+<td align="center">11</td>
+<td align="center">1</td>
+<td align="center">0.01</td>
 </tr>
 </tbody>
 </table>
@@ -563,49 +550,44 @@ class="section level4">
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">[20,25]</td>
-<td align="center">6</td>
-<td align="center">0.06</td>
+<td align="center">[0,10]</td>
+<td align="center">1</td>
+<td align="center">0.01</td>
 </tr>
 <tr class="even">
-<td align="center">(25,30]</td>
-<td align="center">7</td>
-<td align="center">0.07</td>
+<td align="center">(10,20]</td>
+<td align="center">3</td>
+<td align="center">0.03</td>
 </tr>
 <tr class="odd">
-<td align="center">(30,35]</td>
+<td align="center">(20,30]</td>
 <td align="center">15</td>
 <td align="center">0.15</td>
 </tr>
 <tr class="even">
-<td align="center">(35,40]</td>
-<td align="center">19</td>
-<td align="center">0.19</td>
+<td align="center">(30,40]</td>
+<td align="center">31</td>
+<td align="center">0.31</td>
 </tr>
 <tr class="odd">
-<td align="center">(40,45]</td>
-<td align="center">19</td>
-<td align="center">0.19</td>
+<td align="center">(40,50]</td>
+<td align="center">42</td>
+<td align="center">0.42</td>
 </tr>
 <tr class="even">
-<td align="center">(45,50]</td>
-<td align="center">16</td>
-<td align="center">0.16</td>
+<td align="center">(50,60]</td>
+<td align="center">5</td>
+<td align="center">0.05</td>
 </tr>
 <tr class="odd">
-<td align="center">(50,55]</td>
-<td align="center">9</td>
-<td align="center">0.09</td>
-</tr>
-<tr class="even">
-<td align="center">(55,60]</td>
-<td align="center">7</td>
-<td align="center">0.07</td>
-</tr>
-<tr class="odd">
-<td align="center">(60,65]</td>
+<td align="center">(60,70]</td>
 <td align="center">2</td>
 <td align="center">0.02</td>
+</tr>
+<tr class="even">
+<td align="center">(70,80]</td>
+<td align="center">1</td>
+<td align="center">0.01</td>
 </tr>
 </tbody>
 </table>
@@ -636,12 +618,12 @@ class="section level4">
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">21.56</td>
-<td align="center">34.45</td>
-<td align="center">40.9</td>
-<td align="center">40.32</td>
-<td align="center">46.92</td>
-<td align="center">61.46</td>
+<td align="center">9.686</td>
+<td align="center">32.27</td>
+<td align="center">39.36</td>
+<td align="center">40.22</td>
+<td align="center">46.46</td>
+<td align="center">70.77</td>
 </tr>
 </tbody>
 </table>
@@ -660,9 +642,9 @@ class="section level4">
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">39.9</td>
-<td align="center">95.53</td>
-<td align="center">9.774</td>
+<td align="center">61.09</td>
+<td align="center">111.2</td>
+<td align="center">10.54</td>
 </tr>
 </tbody>
 </table>

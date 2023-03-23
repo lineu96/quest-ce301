@@ -268,13 +268,13 @@ ggplot(data = subset(quest_23, peso >=15 &
                        peso <=200 & 
                        altura >=90 & 
                        altura <=250), 
-       mapping = aes(x = peso,
-                     y = altura)) +
+       mapping = aes(x = altura,
+                     y = peso)) +
   geom_point()+
   geom_smooth(method = 'lm', se=F, col=2)+
   geom_smooth(se=F)+
-  xlab("Peso") +
-  ylab("Altura") +
+  xlab("Altura") +
+  ylab("Peso") +
   ggtitle("Peso x Altura")+
   theme_classic() + theme(legend.position = 'none',
                           plot.title = element_text(family = "Helvetica", 
